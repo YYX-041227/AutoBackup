@@ -14,14 +14,14 @@
 
 ## 环境要求
 
+- Windows 10 或更高版本
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) 或更高版本
-- Windows / macOS / Linux
 
 ## 运行
 
 ```bash
 # 克隆项目
-git clone https://github.com/<your-name>/AutoBackup.git
+git clone https://github.com/YYX-041227/AutoBackup.git
 cd AutoBackup
 
 # 还原依赖并编译
@@ -43,7 +43,7 @@ dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=
 
 输出 `./publish/AutoBackup.exe`（约 82 MB），自带 .NET 运行时，可直接运行。
 
-也可以从 [Releases](https://github.com/<your-name>/AutoBackup/releases) 页面下载预编译版本。
+也可以从 [Releases](https://github.com/YYX-041227/AutoBackup/releases) 页面下载预编译版本。
 
 ## 使用说明
 
@@ -54,4 +54,4 @@ dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=
 
 ## 设置存储
 
-设置文件保存在 `%AppData%\AutoBackup\backup_settings.txt`（Windows）或 `~/.config/AutoBackup/backup_settings.txt`（Linux/macOS）。首次启动时自动从旧版项目目录迁移。
+设置文件保存在 `%AppData%\AutoBackup\backup_settings.txt`。首次启动时自动从旧版项目目录迁移。
