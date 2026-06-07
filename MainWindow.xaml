@@ -1,0 +1,302 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AutoBackup.MainWindow"
+        Title="自动备份"
+        Width="1080"
+        Height="740"
+        MinWidth="940"
+        MinHeight="640"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Assets/app-icon.ico"
+        FontFamily="Segoe UI, Microsoft YaHei UI"
+        Background="#F6F7F9">
+  <Window.Styles>
+    <Style Selector="TextBlock.page-title">
+      <Setter Property="FontSize" Value="24" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="#1F2937" />
+    </Style>
+    <Style Selector="TextBlock.page-subtitle">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="Foreground" Value="#6B7280" />
+    </Style>
+    <Style Selector="TextBlock.section-title">
+      <Setter Property="FontSize" Value="15" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="#111827" />
+    </Style>
+    <Style Selector="TextBlock.label">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="#243247" />
+    </Style>
+    <Style Selector="TextBlock.hint">
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="Foreground" Value="#667085" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style Selector="Border.surface">
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#E1E5EA" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="16" />
+    </Style>
+    <Style Selector="Border.soft-surface">
+      <Setter Property="Background" Value="#F8F9FB" />
+      <Setter Property="BorderBrush" Value="#E5E7EB" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="14" />
+    </Style>
+    <Style Selector="Border.status">
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#DCE4EE" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="16" />
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="MinHeight" Value="36" />
+      <Setter Property="Padding" Value="16,7" />
+      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="Button.accent">
+      <Setter Property="Background" Value="#2563EB" />
+      <Setter Property="Foreground" Value="White" />
+      <Setter Property="BorderBrush" Value="#2563EB" />
+    </Style>
+    <Style Selector="Button.subtle">
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="Foreground" Value="#1E3A8A" />
+      <Setter Property="BorderBrush" Value="#C7D7F5" />
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="MinHeight" Value="36" />
+      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#CBD5E1" />
+    </Style>
+    <Style Selector="ComboBox">
+      <Setter Property="MinHeight" Value="36" />
+      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#CBD5E1" />
+    </Style>
+    <Style Selector="Border.log-surface">
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#E1E5EA" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="ClipToBounds" Value="True" />
+    </Style>
+    <Style Selector="ListBox.log-list">
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Padding" Value="8" />
+    </Style>
+    <Style Selector="ListBoxItem">
+      <Setter Property="MinHeight" Value="24" />
+      <Setter Property="Padding" Value="6,3" />
+    </Style>
+    <Style Selector="TextBlock.log-text">
+      <Setter Property="Foreground" Value="#334155" />
+      <Setter Property="FontFamily" Value="Cascadia Mono, Consolas" />
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="TextWrapping" Value="NoWrap" />
+    </Style>
+  </Window.Styles>
+
+  <Grid RowDefinitions="Auto,*">
+    <Border Grid.Row="0"
+            Background="#FFFFFF"
+            BorderBrush="#E1E5EA"
+            BorderThickness="0,0,0,1"
+            Padding="22,10">
+      <TextBlock Classes="page-title" Text="自动备份" />
+    </Border>
+
+    <Grid Grid.Row="1"
+          ColumnDefinitions="410,*"
+          ColumnSpacing="14"
+          Margin="14">
+      <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="10">
+          <Border Classes="surface">
+            <StackPanel Spacing="14">
+              <TextBlock Classes="section-title" Text="位置" />
+              <Grid RowDefinitions="Auto,Auto" RowSpacing="12">
+                <StackPanel Spacing="6">
+                  <TextBlock Classes="label" Text="源文件夹" />
+                  <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                    <TextBox x:Name="SourceFolderTextBox" PlaceholderText="选择要备份的文件夹" />
+                    <Button x:Name="BrowseSourceButton" Grid.Column="1" Content="浏览" />
+                  </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Spacing="6">
+                  <TextBlock Classes="label" Text="目标文件夹" />
+                  <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                    <TextBox x:Name="TargetFolderTextBox" PlaceholderText="选择备份保存位置" />
+                    <Button x:Name="BrowseTargetButton" Grid.Column="1" Content="浏览" />
+                  </Grid>
+                </StackPanel>
+              </Grid>
+            </StackPanel>
+          </Border>
+
+          <Border Classes="surface">
+            <StackPanel Spacing="14">
+              <TextBlock Classes="section-title" Text="备份选项" />
+              <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                <StackPanel Spacing="3">
+                  <TextBlock Classes="label" Text="文件比对" />
+                  <TextBlock Classes="hint" Text="未变化的文件会跳过复制，适合重复备份。" />
+                </StackPanel>
+                <ToggleSwitch x:Name="CompareFilesCheckBox" Grid.Column="1" OnContent="" OffContent="" />
+              </Grid>
+              <Separator />
+              <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                <StackPanel Spacing="3">
+                  <TextBlock Classes="label" Text="版本化备份" />
+                  <TextBlock Classes="hint" Text="每次备份创建一个独立的时间戳目录。" />
+                </StackPanel>
+                <ToggleSwitch x:Name="VersionedBackupCheckBox" Grid.Column="1" OnContent="" OffContent="" />
+              </Grid>
+
+              <Border x:Name="VersionedSettingsPanel" Classes="soft-surface" ClipToBounds="True">
+                <StackPanel Spacing="10">
+                  <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <StackPanel Spacing="6">
+                      <TextBlock Classes="hint" Text="容量限制 GB" />
+                      <TextBox x:Name="MaxCapacityTextBox" PlaceholderText="10" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Spacing="6">
+                      <TextBlock Classes="hint" Text="保留天数" />
+                      <TextBox x:Name="RetentionDaysTextBox" PlaceholderText="30" />
+                    </StackPanel>
+                  </Grid>
+                  <StackPanel Spacing="6">
+                    <TextBlock Classes="hint" Text="命名格式" />
+                    <TextBox x:Name="NamingFormatTextBox" PlaceholderText="yyyy-MM-dd_HH-mm-ss" />
+                  </StackPanel>
+                  <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                    <TextBlock Classes="label" Text="自动清理" VerticalAlignment="Center" />
+                    <ToggleSwitch x:Name="AutoCleanupCheckBox" Grid.Column="1" OnContent="" OffContent="" />
+                  </Grid>
+                </StackPanel>
+              </Border>
+            </StackPanel>
+          </Border>
+
+          <Border Classes="surface">
+            <StackPanel Spacing="14">
+              <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                <StackPanel Spacing="3">
+                  <TextBlock Classes="section-title" Text="定时备份" />
+                  <TextBlock Classes="hint" Text="按设定频率在软件后台执行自动备份。" />
+                </StackPanel>
+                <ToggleSwitch x:Name="ScheduledBackupCheckBox" Grid.Column="1" OnContent="" OffContent="" />
+              </Grid>
+
+              <Border x:Name="ScheduleSettingsPanel" Classes="soft-surface" ClipToBounds="True">
+                <StackPanel Spacing="10">
+                  <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <StackPanel Spacing="6">
+                      <TextBlock Classes="hint" Text="频率" />
+                      <ComboBox x:Name="FrequencyComboBox" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Spacing="6">
+                      <TextBlock x:Name="IntervalLabel" Classes="hint" Text="间隔" />
+                      <TextBox x:Name="IntervalTextBox" PlaceholderText="10" />
+                    </StackPanel>
+                  </Grid>
+                  <Grid x:Name="TimeSettingsGrid" ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                    <StackPanel Spacing="6">
+                      <TextBlock Classes="hint" Text="小时" />
+                      <ComboBox x:Name="HourComboBox" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Spacing="6">
+                      <TextBlock Classes="hint" Text="分钟" />
+                      <ComboBox x:Name="MinuteComboBox" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Spacing="6">
+                      <TextBlock Classes="hint" Text="时段" />
+                      <ComboBox x:Name="AmPmComboBox" />
+                    </StackPanel>
+                  </Grid>
+                  <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <StackPanel x:Name="DayOfWeekPanel" Spacing="6">
+                      <TextBlock Classes="hint" Text="星期" />
+                      <ComboBox x:Name="DayOfWeekComboBox" />
+                    </StackPanel>
+                    <StackPanel x:Name="DayOfMonthPanel" Grid.Column="1" Spacing="6">
+                      <TextBlock Classes="hint" Text="日期" />
+                      <ComboBox x:Name="DayOfMonthComboBox" />
+                    </StackPanel>
+                  </Grid>
+                </StackPanel>
+              </Border>
+            </StackPanel>
+          </Border>
+
+          <Border Classes="surface">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+              <StackPanel Spacing="3">
+                <TextBlock Classes="section-title" Text="后台运行" />
+                <TextBlock Classes="hint" Text="关闭窗口时保留后台定时备份逻辑。" />
+              </StackPanel>
+              <ToggleSwitch x:Name="MinimizeToTrayCheckBox" Grid.Column="1" OnContent="" OffContent="" />
+            </Grid>
+          </Border>
+        </StackPanel>
+      </ScrollViewer>
+
+      <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="10">
+        <Border Classes="status">
+          <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="10" ColumnSpacing="16">
+            <StackPanel Spacing="4">
+              <TextBlock Classes="hint" Text="当前状态" />
+              <TextBlock x:Name="StatusTextBlock"
+                         Text="就绪"
+                         FontSize="24"
+                         FontWeight="SemiBold"
+                         Foreground="#102A56" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+              <Button x:Name="SaveSettingsButton" Classes="subtle" Content="保存设置" />
+              <Button x:Name="BackupButton" Classes="accent" Content="立即备份" />
+            </StackPanel>
+            <TextBlock x:Name="TimeStatusTextBlock"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="2"
+                       Classes="hint"
+                       Text="-" />
+          </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Classes="surface">
+          <Grid RowDefinitions="Auto,*" RowSpacing="12">
+            <Grid ColumnDefinitions="*,Auto">
+              <TextBlock Classes="section-title" Text="日志" />
+              <TextBlock Grid.Column="1" Classes="hint" Text="最近 300 条" VerticalAlignment="Center" />
+            </Grid>
+            <Border Grid.Row="1" Classes="log-surface">
+              <ListBox x:Name="LogListBox"
+                       Classes="log-list"
+                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <TextBlock Classes="log-text" Text="{Binding}" />
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Border>
+          </Grid>
+        </Border>
+      </Grid>
+    </Grid>
+  </Grid>
+</Window>

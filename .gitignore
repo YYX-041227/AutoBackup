@@ -1,0 +1,33 @@
+# Build artifacts
+bin/
+obj/
+
+# Publish output (distributed via GitHub Releases)
+publish/
+
+# NuGet
+.nuget/
+
+# .NET SDK local cache
+.dotnet/
+.templateengine/
+
+# IDE
+.vs/
+.vscode/
+
+# Claude Code local settings
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local settings (generated at runtime in %AppData%)
+backup_settings.txt
+
+# Temp
+*.user
+*.suo
+*.cache
+*.tmp

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon>Assets\app-icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.0.1" />
+    <PackageReference Include="Avalonia.BuildServices" Version="11.3.2" ExcludeAssets="build;buildTransitive" PrivateAssets="all" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.0.1" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.0.1" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\app-icon.ico" />
+    <AvaloniaXaml Include="App.xaml" />
+    <AvaloniaXaml Include="MainWindow.xaml" />
+  </ItemGroup>
+
+  <Target Name="DisableAvaloniaBuildStats" BeforeTargets="AvaloniaStats">
+    <PropertyGroup>
+      <UsedAvaloniaProducts></UsedAvaloniaProducts>
+    </PropertyGroup>
+  </Target>
+
+</Project>

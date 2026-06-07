@@ -1,0 +1,24 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AutoBackup.App"
+             RequestedThemeVariant="Light">
+  <Application.Styles>
+    <FluentTheme />
+  </Application.Styles>
+  <TrayIcon.Icons>
+    <TrayIcons>
+      <TrayIcon Icon="/Assets/app-icon.ico"
+                ToolTipText="自动备份"
+                IsVisible="False">
+        <TrayIcon.Menu>
+          <NativeMenu>
+            <NativeMenuItem Header="显示主窗口" Click="TrayShowWindow_OnClick" />
+            <NativeMenuItem Header="立即备份" Click="TrayBackup_OnClick" />
+            <NativeMenuItemSeparator />
+            <NativeMenuItem Header="退出" Click="TrayExit_OnClick" />
+          </NativeMenu>
+        </TrayIcon.Menu>
+      </TrayIcon>
+    </TrayIcons>
+  </TrayIcon.Icons>
+</Application>
