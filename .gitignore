@@ -31,3 +31,9 @@ backup_settings.txt
 *.suo
 *.cache
 *.tmp
+
+# Publish folder used by setup.iss
+publish-folder/
+
+# Inno Setup installer artifacts (distributed via GitHub Releases)
+AutoBackup-Setup-*.exe
