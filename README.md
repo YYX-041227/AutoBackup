@@ -1,4 +1,4 @@
-# 自动备份 (AutoBackup)
+﻿# 自动备份 (AutoBackup)
 
 Windows 桌面文件夹备份工具，基于 Avalonia UI + .NET 9。
 
@@ -42,11 +42,13 @@ dotnet run
 dotnet run -- --autobackup
 
 # 发布
-dotnet publish -c Release -r win-x64 --self-contained true -o ./publish
+dotnet publish -c Release -r win-x64 --self-contained true -o ./publish-folder
 ```
 
 Avalonia 依赖原生组件（SkiaSharp、HarfBuzzSharp），不支持 `PublishSingleFile` 模式，需以文件夹形式分发。
 
 ## 打包安装程序
+
+先执行上面的 `dotnet publish` 命令，确保输出到 `publish-folder` 目录，然后：
 
 使用 [Inno Setup 6](https://www.innosetup.com) 编译 `setup.iss` 即可生成安装包。
